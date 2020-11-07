@@ -1,19 +1,27 @@
 package Controllers;
 
+import DB.DBconection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class ControllerLog {
+
+    public static int idUser;
 
     @FXML
     private Button btn_log;
@@ -27,16 +35,28 @@ public class ControllerLog {
     @FXML
     private PasswordField Log_pass;
 
-    public void handleButtonAction(ActionEvent event) throws IOException {
+    public void handleButtonAction(ActionEvent event) throws IOException, SQLException {
 
         if(event.getSource() == btn_log) {
-            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Index.fxml"));
-            Parent root = (Parent) rootLoader.load();
-            Stage window = (Stage) btn_log.getScene().getWindow();
-            Scene scene = new Scene(root);
-            window.setTitle("Index");
-            window.setScene(scene);
-            window.show();
+
+            if(checkUserInDB()==null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("Błędny email lub hasło!");
+                alert.showAndWait();
+            }
+
+            else {
+                idUser = checkUserInDB();
+                FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Index.fxml"));
+                Parent root = (Parent) rootLoader.load();
+                Stage window = (Stage) btn_log.getScene().getWindow();
+                Scene scene = new Scene(root);
+                window.setTitle("Index");
+                window.setScene(scene);
+                window.show();
+            }
         }
 
 
@@ -52,6 +72,24 @@ public class ControllerLog {
 
     }
 
-    private void checkUserInDB() {
+    private Integer checkUserInDB() throws SQLException {
+
+        DBconection db = new DBconection();
+        Connection connection = db.getContection();
+
+        String sqlQuery = "Select id from mydatabase.users where email= ? and pass = ?";
+
+        PreparedStatement preparedStmt = connection.prepareStatement(sqlQuery);
+        preparedStmt.setString(1, Log_email.getText());
+        preparedStmt.setString(2, Log_pass.getText());
+        ResultSet rs = preparedStmt.executeQuery();
+
+        if(rs.next())
+        {
+            return rs.getInt("id");
+        }
+        else
+            return null;
+
     }
 }

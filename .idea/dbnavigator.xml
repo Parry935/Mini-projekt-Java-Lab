@@ -27,7 +27,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="d5a235ff-ef63-4d0e-88ea-ec8eecdb8ee6">
-      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[Select description from mydatabase.newtable]]></console>
+      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[Select email from mydatabase.users where email= 'admin@' and pass = '123';]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
