@@ -20,12 +20,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import source.Clock;
 
 
 public class ControllerIndex {
 
     ControllerLog controllerLog;
     public static Movie chooseMovie;
+
+    @FXML
+    private Label timeLabel;
+
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+
 
     //Repertuar
     @FXML
@@ -67,6 +76,8 @@ public class ControllerIndex {
     ObservableList<Movie> movies = FXCollections.observableArrayList();
     @FXML
     public void initialize() throws SQLException{
+
+        executorService.execute(new Clock(timeLabel));
 
         addFilms();
 

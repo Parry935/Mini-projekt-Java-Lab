@@ -17,7 +17,7 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #47494F;">
                <children>
-                  <TableView fx:id="table" layoutX="-2.0" layoutY="4.0" prefHeight="365.0" prefWidth="606.0">
+                  <TableView fx:id="table" layoutX="-2.0" layoutY="29.0" prefHeight="341.0" prefWidth="606.0">
                     <columns>
                       <TableColumn fx:id="date" prefWidth="147.20001220703125" text="Data" />
                       <TableColumn fx:id="title" prefWidth="254.4000244140625" text="Film" />
@@ -35,7 +35,7 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #47494F;">
                <children>
-                  <TableView layoutY="4.0" prefHeight="365.0" prefWidth="600.0">
+                  <TableView layoutY="30.0" prefHeight="340.0" prefWidth="600.0">
                     <columns>
                       <TableColumn prefWidth="102.4000244140625" text="Data" />
                       <TableColumn prefWidth="124.0" text="Film" />
@@ -48,6 +48,11 @@
                         <SepiaTone />
                      </effect>
                   </TableView>
+                  <Label fx:id="timeLabel" layoutX="375.0" prefHeight="29.0" prefWidth="214.0" text="Time" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
       </content>
     </Tab>
