@@ -1,5 +1,6 @@
 package Controllers;
 
+import DB.DBconection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,6 +9,10 @@ import javafx.scene.shape.Rectangle;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ControllerChoosePlace {
     @FXML
@@ -229,6 +234,8 @@ public class ControllerChoosePlace {
     @FXML
     private Button btn_order;
 
+    ControllerIndex controllerIndex;
+
     @FXML
     private RadioButton [][]  placeChoose = new RadioButton[][]{
             {r1_1, r1_2, r1_3, r1_4, r1_5, r1_6, r1_7, r1_8, r1_9},
@@ -246,8 +253,32 @@ public class ControllerChoosePlace {
 
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
+        int idMovie = getIdMovie();
+        btn_order.setText(Integer.toString(idMovie));
     }
+
+    private int getIdMovie() throws SQLException  {
+
+            DBconection db = new DBconection();
+            Connection connection = db.getContection();
+
+            String sqlQuery = "Select id from mydatabase.films where date = ? and title = ? and type = ?";
+
+            PreparedStatement preparedStmt = connection.prepareStatement(sqlQuery);
+            preparedStmt.setString(1, controllerIndex.chooseMovie.getDate());
+            preparedStmt.setString(2, controllerIndex.chooseMovie.getTitle());
+            preparedStmt.setString(3, controllerIndex.chooseMovie.getType());
+            ResultSet rs = preparedStmt.executeQuery();
+
+            if(rs.next())
+            {
+                return rs.getInt("id");
+            }
+            else
+                return 0;
+
+        }
 
     public void handleButtonAction(ActionEvent event) {
     }

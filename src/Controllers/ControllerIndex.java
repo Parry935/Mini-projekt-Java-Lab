@@ -1,5 +1,6 @@
 package Controllers;
 
+import DB.DBconection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,15 +9,31 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import source.Movie;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import source.Clock;
 
 
 public class ControllerIndex {
+
+    ControllerLog controllerLog;
+    public static Movie chooseMovie;
+
+    @FXML
+    private Label timeLabel;
+
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
 
     //Repertuar
@@ -56,14 +73,14 @@ public class ControllerIndex {
     @FXML
     private Label prem_title3;
 
-    ObservableList<Movie> movies = FXCollections.observableArrayList(
-            new Movie("10.11.2020","Władca Pierścieni","Fantasy"),
-            new Movie("5.12.2020","Jaś Fasola","Komedia")
-    );
-
-
+    ObservableList<Movie> movies = FXCollections.observableArrayList();
     @FXML
-    public void initialize(){
+    public void initialize() throws SQLException{
+
+        executorService.execute(new Clock(timeLabel));
+
+        addFilms();
+
         //css
         date.setStyle( "-fx-alignment: CENTER;");
         title.setStyle( "-fx-alignment: CENTER;");
@@ -89,6 +106,7 @@ public class ControllerIndex {
                     final Button editButton = new Button(("Rezerwuj"));
                     editButton.setOnAction(event -> {
                         Movie m= getTableView().getItems().get(getIndex());
+                        chooseMovie = m;
                         FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/ChoosePlace.fxml"));
                         Parent root = null;
                         try {
@@ -117,6 +135,32 @@ public class ControllerIndex {
         reserv.setCellFactory(callFactory);
 
         table.setItems(movies);
+    }
+
+    private void addFilms() throws SQLException {
+
+        String date;
+        String title;
+        String type;
+
+        DBconection db = new DBconection();
+        Connection connection = db.getContection();
+
+        String sqlQuery = "Select * from mydatabase.films";
+
+        PreparedStatement preparedStmt = connection.prepareStatement(sqlQuery);
+        ResultSet rs = preparedStmt.executeQuery();
+
+        while(rs.next())
+        {
+            date = rs.getString("date");
+            title = rs.getString("title");
+            type = rs.getString("type");
+
+            movies.add(new Movie(date,title,type));
+        }
+
+        connection.close();
     }
 
 
