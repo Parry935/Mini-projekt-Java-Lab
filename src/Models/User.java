@@ -1,21 +1,23 @@
-package source;
+package Models;
 
 public class User {
     private String emial;
     private String first_name;
     private String last_name;
-    private int age;
-    private int number;
+    private String age;
+    private String number;
     private String password;
+    private String role;
 
 
-    public User(String emial, String first_name, String last_name, int age, int number, String password) {
+    public User(String emial, String first_name, String last_name, String age, String number, String password,String role) {
         this.emial = emial;
         this.first_name = first_name;
         this.last_name = last_name;
         this.age = age;
         this.number = number;
         this.password = password;
+        this.role = role;
     }
 
     public String getEmial() {
@@ -42,19 +44,19 @@ public class User {
         this.last_name = last_name;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
@@ -64,5 +66,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

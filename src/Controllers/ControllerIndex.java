@@ -1,6 +1,5 @@
 package Controllers;
 
-import DB.DBconection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,13 +8,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import source.Movie;
+import Models.*;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,66 +33,70 @@ public class ControllerIndex {
     public static Movie chooseMovie;
 
     @FXML
-    private Label timeLabel;
-
-    private ExecutorService executorService = Executors.newSingleThreadExecutor();
-
-
-    //Repertuar
-    @FXML
-    private TableView<Movie> table;
+    private TableView<Movie> tableMovies;
 
     @FXML
-    private TableColumn<Movie, String> date;
+    private TableColumn<Movie, String> dateMovies;
 
     @FXML
-    private TableColumn<Movie, String> title;
+    private TableColumn<Movie, String> titleMovies;
 
     @FXML
-    private TableColumn<Movie, String> type;
+    private TableColumn<Movie, String> typeMovies;
 
     @FXML
     private TableColumn reserv;
 
-    //Moje
-
+    @FXML
+    private TableView<Movie> tableReservation;
 
     @FXML
-    private ImageView prem_img_1;
+    private TableColumn<Movie, String> dateRes;
 
     @FXML
-    private ImageView prem_img_2;
+    private TableColumn<Movie, String> titleRes;
 
     @FXML
-    private ImageView prem_img_3;
+    private TableColumn<Reservation, String> placeRes;
 
     @FXML
-    private Label prem_title1;
+    private TableColumn timeRes;
 
     @FXML
-    private Label prem_title2;
+    private TableColumn confirmRes;
 
     @FXML
-    private Label prem_title3;
+    private TableColumn delRes;
+
+    @FXML
+    private Label timeLabel;
+
+    @FXML
+    private TableView<Movie> tableTicets;
+
+    @FXML
+    private TableColumn<Movie, String> dateTicets;
+
+    @FXML
+    private TableColumn<Movie, String> titleTicets;
+
+    @FXML
+    private TableColumn<Movie, String> placeTicets;
+
+    @FXML
+    private TableColumn generateTicets;
+
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     ObservableList<Movie> movies = FXCollections.observableArrayList();
     @FXML
-    public void initialize() throws SQLException{
+    public void initialize() throws SQLException, IOException {
 
-        executorService.execute(new Clock(timeLabel));
+        getMovies();
 
-        addFilms();
-
-        //css
-        date.setStyle( "-fx-alignment: CENTER;");
-        title.setStyle( "-fx-alignment: CENTER;");
-        type.setStyle( "-fx-alignment: CENTER;");
-        reserv.setStyle( "-fx-alignment: CENTER;");
-
-        ////////////
-        date.setCellValueFactory(new PropertyValueFactory<Movie,String>("date"));
-        title.setCellValueFactory(new PropertyValueFactory<Movie,String>("title"));
-        type.setCellValueFactory(new PropertyValueFactory<Movie,String>("type"));
+        dateMovies.setCellValueFactory(new PropertyValueFactory<Movie,String>("date"));
+        titleMovies.setCellValueFactory(new PropertyValueFactory<Movie,String>("title"));
+        typeMovies.setCellValueFactory(new PropertyValueFactory<Movie,String>("type"));
 
         Callback<TableColumn<Movie, String>, TableCell<Movie, String>> callFactory = (param) ->{
             final TableCell<Movie,String> cell = new TableCell<Movie,String>(){
@@ -134,34 +140,31 @@ public class ControllerIndex {
 
         reserv.setCellFactory(callFactory);
 
-        table.setItems(movies);
+        tableMovies.setItems(movies);
     }
 
-    private void addFilms() throws SQLException {
+    private void getMovies() throws IOException {
 
-        String date;
-        String title;
-        String type;
+        Socket s = new Socket("localhost", 9999);
 
-        DBconection db = new DBconection();
-        Connection connection = db.getContection();
+        PrintWriter out = new PrintWriter(s.getOutputStream());
+        out.println("getMovies");
+        out.flush();
 
-        String sqlQuery = "Select * from mydatabase.films";
+        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
-        PreparedStatement preparedStmt = connection.prepareStatement(sqlQuery);
-        ResultSet rs = preparedStmt.executeQuery();
+        String buffer = in.readLine();
 
-        while(rs.next())
-        {
-            date = rs.getString("date");
-            title = rs.getString("title");
-            type = rs.getString("type");
+        System.out.println(buffer);
 
-            movies.add(new Movie(date,title,type));
+        String[] moviesFromServer = buffer.split("#");
+
+        for(String item: moviesFromServer){
+            String[] movie = item.split("@");
+            Movie movieToList = new Movie(movie[0],movie[1],movie[2]);
+            movies.add(movieToList);
         }
 
-        connection.close();
     }
-
 
 }

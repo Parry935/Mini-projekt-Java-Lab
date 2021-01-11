@@ -1,6 +1,5 @@
 package Controllers;
 
-import DB.DBconection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,9 +50,13 @@ public class ControllerLog {
 
             BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
-            System.out.println("Server return:" + in.readLine());
+            String idUserString = in.readLine();
 
-            /*if(checkUserInDB()==null) {
+            int idUser = Integer.parseInt(idUserString);
+
+            System.out.println(idUser);
+
+            if(idUser == 0) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Dialog");
                 alert.setHeaderText(null);
@@ -62,7 +65,6 @@ public class ControllerLog {
             }
 
             else {
-                idUser = checkUserInDB();
                 FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Index.fxml"));
                 Parent root = (Parent) rootLoader.load();
                 Stage window = (Stage) btn_log.getScene().getWindow();
@@ -70,7 +72,7 @@ public class ControllerLog {
                 window.setTitle("Index");
                 window.setScene(scene);
                 window.show();
-            }*/
+            }
         }
 
 
@@ -83,27 +85,6 @@ public class ControllerLog {
             stage.setScene(scene);
             stage.show();
         }
-
-    }
-
-    private Integer checkUserInDB() throws SQLException {
-
-        DBconection db = new DBconection();
-        Connection connection = db.getContection();
-
-        String sqlQuery = "Select id from mydatabase.users where email= ? and pass = ?";
-
-        PreparedStatement preparedStmt = connection.prepareStatement(sqlQuery);
-        preparedStmt.setString(1, Log_email.getText());
-        preparedStmt.setString(2, Log_pass.getText());
-        ResultSet rs = preparedStmt.executeQuery();
-
-        if(rs.next())
-        {
-            return rs.getInt("id");
-        }
-        else
-            return null;
 
     }
 }

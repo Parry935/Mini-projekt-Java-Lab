@@ -1,4 +1,4 @@
-package source;
+package Models;
 
 
 public class Movie {

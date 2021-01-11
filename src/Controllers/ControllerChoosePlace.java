@@ -1,14 +1,17 @@
 package Controllers;
 
-import DB.DBconection;
+import Models.Movie;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.shape.Rectangle;
 
-import javax.swing.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -253,32 +256,28 @@ public class ControllerChoosePlace {
 
 
     @FXML
-    public void initialize() throws SQLException {
+    public void initialize() throws SQLException, IOException {
         int idMovie = getIdMovie();
         btn_order.setText(Integer.toString(idMovie));
     }
 
-    private int getIdMovie() throws SQLException  {
+    private int getIdMovie() throws SQLException, IOException {
 
-            DBconection db = new DBconection();
-            Connection connection = db.getContection();
+        Socket s = new Socket("localhost", 9999);
 
-            String sqlQuery = "Select id from mydatabase.films where date = ? and title = ? and type = ?";
+        PrintWriter out = new PrintWriter(s.getOutputStream());
+        out.println("getIdMovie " + controllerIndex.chooseMovie.getDate() + " "
+                + controllerIndex.chooseMovie.getTitle() + " "
+                + controllerIndex.chooseMovie.getType());
+        out.flush();
 
-            PreparedStatement preparedStmt = connection.prepareStatement(sqlQuery);
-            preparedStmt.setString(1, controllerIndex.chooseMovie.getDate());
-            preparedStmt.setString(2, controllerIndex.chooseMovie.getTitle());
-            preparedStmt.setString(3, controllerIndex.chooseMovie.getType());
-            ResultSet rs = preparedStmt.executeQuery();
+        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
-            if(rs.next())
-            {
-                return rs.getInt("id");
-            }
-            else
-                return 0;
+        String idMovie = in.readLine();
 
-        }
+
+        return Integer.parseInt(idMovie);
+    }
 
     public void handleButtonAction(ActionEvent event) {
     }
