@@ -120,7 +120,12 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btn_order" layoutX="308.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="41.0" prefWidth="208.0" style="-fx-background-color: #1F547E;" text="Zamów" textFill="WHITE">
+      <Button fx:id="btn_order" layoutX="256.0" layoutY="342.0" mnemonicParsing="false" onAction="#orderEvent" prefHeight="42.0" prefWidth="180.0" style="-fx-background-color: #1F547E;" text="Zamów" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_returnToIndex" layoutX="451.0" layoutY="342.0" mnemonicParsing="false" onAction="#returnToIndex" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: #1F547E;" text="Powrót" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

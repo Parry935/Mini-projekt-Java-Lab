@@ -1,14 +1,17 @@
 package Controllers;
 
+import ViewModel.MovieVM;
+import ViewModel.ReservationConfirmVM;
+import ViewModel.ReservationToConfirmVM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import Models.*;
@@ -18,19 +21,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import source.Clock;
+import source.Main;
 
 
 public class ControllerIndex {
 
-    ControllerLog controllerLog;
-    public static Movie chooseMovie;
+    @FXML
+    private Button btn_logout;
 
     @FXML
     private TableView<Movie> tableMovies;
@@ -45,22 +51,22 @@ public class ControllerIndex {
     private TableColumn<Movie, String> typeMovies;
 
     @FXML
-    private TableColumn reserv;
+    private TableColumn reservMovies;
 
     @FXML
-    private TableView<Movie> tableReservation;
+    private TableView<ReservationToConfirmVM> tableReservation;
 
     @FXML
-    private TableColumn<Movie, String> dateRes;
+    private TableColumn<ReservationToConfirmVM, String> dateRes;
 
     @FXML
-    private TableColumn<Movie, String> titleRes;
+    private TableColumn<ReservationToConfirmVM, String> titleRes;
 
     @FXML
-    private TableColumn<Reservation, String> placeRes;
+    private TableColumn<ReservationToConfirmVM, String> placeRes;
 
     @FXML
-    private TableColumn timeRes;
+    private TableColumn<ReservationToConfirmVM, String>  timeRes;
 
     @FXML
     private TableColumn confirmRes;
@@ -72,16 +78,16 @@ public class ControllerIndex {
     private Label timeLabel;
 
     @FXML
-    private TableView<Movie> tableTicets;
+    private TableView<ReservationConfirmVM> tableTicets;
 
     @FXML
-    private TableColumn<Movie, String> dateTicets;
+    private TableColumn<ReservationConfirmVM, String> dateTicets;
 
     @FXML
-    private TableColumn<Movie, String> titleTicets;
+    private TableColumn<ReservationConfirmVM, String> titleTicets;
 
     @FXML
-    private TableColumn<Movie, String> placeTicets;
+    private TableColumn<ReservationConfirmVM, String> placeTicets;
 
     @FXML
     private TableColumn generateTicets;
@@ -89,8 +95,17 @@ public class ControllerIndex {
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     ObservableList<Movie> movies = FXCollections.observableArrayList();
+    ObservableList<ReservationToConfirmVM> reservationsVM = FXCollections.observableArrayList();
+    ObservableList<ReservationConfirmVM> reservationsConfirmVM = FXCollections.observableArrayList();
+
+    List<MovieVM> reservedMovies = new ArrayList<MovieVM>();
+
+    List<Reservation> reservations = new ArrayList<Reservation>();
+
     @FXML
-    public void initialize() throws SQLException, IOException {
+    public void initialize() throws SQLException, IOException, ParseException {
+
+        executorService.execute(new Clock(timeLabel));
 
         getMovies();
 
@@ -98,6 +113,8 @@ public class ControllerIndex {
         titleMovies.setCellValueFactory(new PropertyValueFactory<Movie,String>("title"));
         typeMovies.setCellValueFactory(new PropertyValueFactory<Movie,String>("type"));
 
+
+        //Button to row
         Callback<TableColumn<Movie, String>, TableCell<Movie, String>> callFactory = (param) ->{
             final TableCell<Movie,String> cell = new TableCell<Movie,String>(){
             @Override
@@ -112,7 +129,7 @@ public class ControllerIndex {
                     final Button editButton = new Button(("Rezerwuj"));
                     editButton.setOnAction(event -> {
                         Movie m= getTableView().getItems().get(getIndex());
-                        chooseMovie = m;
+                        Main.movie = m;
                         FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/ChoosePlace.fxml"));
                         Parent root = null;
                         try {
@@ -120,11 +137,13 @@ public class ControllerIndex {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        Stage stage = new Stage();
-                        Scene scene = new Scene(root);
-                        stage.setTitle("Order - " + m.getTitle() + "   Data: " + m.getDate());
-                        stage.setScene(scene);
-                        stage.show();
+                        if(root != null) {
+                            Stage stage = (Stage) btn_logout.getScene().getWindow();
+                            Scene scene = new Scene(root);
+                            stage.setTitle("Order - " + m.getTitle() + "   Data: " + m.getDate());
+                            stage.setScene(scene);
+                            stage.show();
+                        }
                     });
 
                     setGraphic(editButton);
@@ -138,9 +157,174 @@ public class ControllerIndex {
         };
 
 
-        reserv.setCellFactory(callFactory);
+        reservMovies.setCellFactory(callFactory);
 
         tableMovies.setItems(movies);
+
+        getMoviesWithId();
+        getReservationForUser();
+        initViewReservationToConfirm();
+
+        dateRes.setCellValueFactory(new PropertyValueFactory<ReservationToConfirmVM,String>("date"));
+        titleRes.setCellValueFactory(new PropertyValueFactory<ReservationToConfirmVM,String>("title"));
+        placeRes.setCellValueFactory(new PropertyValueFactory<ReservationToConfirmVM,String>("place"));
+        timeRes.setCellValueFactory(new PropertyValueFactory<ReservationToConfirmVM,String>("dateToConfirm"));
+
+
+        Callback<TableColumn<ReservationToConfirmVM, String>, TableCell<ReservationToConfirmVM, String>> callFactoryReservationConfirm = (param) ->{
+            final TableCell<ReservationToConfirmVM,String> cell = new TableCell<ReservationToConfirmVM,String>(){
+                @Override
+                public void updateItem(String item,boolean empty)
+                {
+                    super.updateItem(item,empty);
+                    if(empty){
+                        setGraphic(null);
+                        setText(null);
+                    }
+                    else{
+                        final Button editButton = new Button(("Potwierdz"));
+                        editButton.setOnAction(event -> {
+                            ReservationToConfirmVM r= getTableView().getItems().get(getIndex());
+
+                            try {
+                                updateReservation(Integer.parseInt(r.getIdMovie()),Main.userID,r.getPlace());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Index.fxml"));
+                            Parent root = null;
+                            try {
+                                root = (Parent) rootLoader.load();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Stage window = (Stage) btn_logout.getScene().getWindow();
+                            Scene scene = new Scene(root);
+                            window.setTitle("Index");
+                            window.setScene(scene);
+                            window.show();
+                        });
+
+                        setGraphic(editButton);
+                        setText(null);
+                    }
+                }
+
+            };
+            return cell;
+
+        };
+
+
+        Callback<TableColumn<ReservationToConfirmVM, String>, TableCell<ReservationToConfirmVM, String>> callFactoryReservationDel = (param) ->{
+            final TableCell<ReservationToConfirmVM,String> cell = new TableCell<ReservationToConfirmVM,String>(){
+                @Override
+                public void updateItem(String item,boolean empty)
+                {
+                    super.updateItem(item,empty);
+                    if(empty){
+                        setGraphic(null);
+                        setText(null);
+                    }
+                    else{
+                        final Button editButton = new Button(("Anuluj"));
+                        editButton.setOnAction(event -> {
+                            ReservationToConfirmVM r= getTableView().getItems().get(getIndex());
+
+                            try {
+                                deleteReservation(Integer.parseInt(r.getIdMovie()),Main.userID,r.getPlace());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Index.fxml"));
+                            Parent root = null;
+                            try {
+                                root = (Parent) rootLoader.load();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Stage window = (Stage) btn_logout.getScene().getWindow();
+                            Scene scene = new Scene(root);
+                            window.setTitle("Index");
+                            window.setScene(scene);
+                            window.show();
+                        });
+
+                        setGraphic(editButton);
+                        setText(null);
+                    }
+                }
+
+            };
+            return cell;
+
+        };
+
+        confirmRes.setCellFactory(callFactoryReservationConfirm);
+        delRes.setCellFactory(callFactoryReservationDel);
+
+        tableTicets.setItems(reservationsConfirmVM);
+
+
+
+
+        initViewReservationConfirm();
+
+        Callback<TableColumn<ReservationConfirmVM, String>, TableCell<ReservationConfirmVM, String>> callFactoryGenerate = (param) ->{
+            final TableCell<ReservationConfirmVM,String> cell = new TableCell<ReservationConfirmVM,String>(){
+                @Override
+                public void updateItem(String item,boolean empty)
+                {
+                    super.updateItem(item,empty);
+                    if(empty){
+                        setGraphic(null);
+                        setText(null);
+                    }
+                    else{
+                        final Button editButton = new Button(("Potwierdz"));
+                        editButton.setOnAction(event -> {
+                            ReservationConfirmVM r= getTableView().getItems().get(getIndex());
+
+                            try {
+                                updateReservation(Integer.parseInt(r.getIdMovie()),Main.userID,r.getPlace());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Ticket.fxml"));
+                            Parent root = null;
+                            try {
+                                root = (Parent) rootLoader.load();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Stage window = (Stage) btn_logout.getScene().getWindow();
+                            Scene scene = new Scene(root);
+                            window.setTitle("Index");
+                            window.setScene(scene);
+                            window.show();
+                        });
+
+                        setGraphic(editButton);
+                        setText(null);
+                    }
+                }
+
+            };
+            return cell;
+
+        };
+
+        dateTicets.setCellValueFactory(new PropertyValueFactory<ReservationConfirmVM,String>("date"));
+        titleTicets.setCellValueFactory(new PropertyValueFactory<ReservationConfirmVM,String>("title"));
+        placeTicets.setCellValueFactory(new PropertyValueFactory<ReservationConfirmVM,String>("place"));
+
+        delRes.setCellFactory(callFactoryReservationDel);
+
+        tableReservation.setItems(reservationsVM);
+
     }
 
     private void getMovies() throws IOException {
@@ -155,8 +339,6 @@ public class ControllerIndex {
 
         String buffer = in.readLine();
 
-        System.out.println(buffer);
-
         String[] moviesFromServer = buffer.split("#");
 
         for(String item: moviesFromServer){
@@ -166,5 +348,161 @@ public class ControllerIndex {
         }
 
     }
+
+    private void getReservationForUser() throws IOException {
+
+        Socket s = new Socket("localhost", 9999);
+
+        PrintWriter out = new PrintWriter(s.getOutputStream());
+        out.println("getReservationForUser " + String.valueOf(Main.userID));
+        out.flush();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String buffer = in.readLine();
+
+
+        String[] reservationFromDb = buffer.split("#");
+
+        for(String item: reservationFromDb){
+            String[] reservation = item.split("@");
+            Reservation reservationToList = new Reservation(
+                    Main.userID,
+                    Integer.parseInt(reservation[0]),
+                    reservation[1],
+                    Integer.parseInt(reservation[2]));
+            reservations.add(reservationToList);
+        }
+
+    }
+
+    private void getMoviesWithId() throws IOException {
+
+        Socket s = new Socket("localhost", 9999);
+
+        PrintWriter out = new PrintWriter(s.getOutputStream());
+        out.println("getMoviesWithId");
+        out.flush();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String buffer = in.readLine();
+
+
+        String[] moviesFromServer = buffer.split("#");
+
+        for (String item : moviesFromServer) {
+            String[] movie = item.split("@");
+            MovieVM movieToList = new MovieVM(movie[0], movie[1], movie[2], movie[3]);
+            reservedMovies.add(movieToList);
+        }
+    }
+
+
+    private void initViewReservationConfirm() throws IOException {
+
+        for(Reservation res : reservations)
+        {
+            for(MovieVM m : reservedMovies)
+            {
+                if(Integer.parseInt(m.getId())==res.getId_movie())
+                {
+                    if(res.getConfirm() == 1) {
+
+                        ReservationConfirmVM resToView = new ReservationConfirmVM(m.getDate(), m.getTitle(), res.getPlace(),m.getId());
+                        reservationsConfirmVM.add(resToView);
+                    }
+                }
+            }
+        }
+
+    }
+
+    private void initViewReservationToConfirm() throws IOException, ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        for(Reservation res : reservations)
+        {
+            for(MovieVM m : reservedMovies)
+            {
+                if(Integer.parseInt(m.getId())==res.getId_movie())
+                {
+                    if(res.getConfirm() == 0) {
+
+                        String [] dateString = m.getDate().split(" ", 2);
+
+                        LocalDate date = LocalDate.parse(dateString[0],formatter);
+
+                        LocalDate dateToView = date.minusDays(1);
+
+
+                        if(dateToView.isAfter(LocalDate.now())) {
+
+                            String dateToViewWithHour = dateToView.toString() + " " + dateString[1];
+
+                            ReservationToConfirmVM resToView = new ReservationToConfirmVM(m.getDate(), m.getTitle(), res.getPlace(), dateToViewWithHour,m.getId());
+                            reservationsVM.add(resToView);
+                        }
+
+                        else
+                        {
+
+                            deleteReservation(res.getId_movie(),res.getId_user(),res.getPlace());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void deleteReservation(int id_movie, int id_user, String place) throws IOException {
+
+        Socket s = new Socket("localhost", 9999);
+
+        PrintWriter out = new PrintWriter(s.getOutputStream());
+        out.println("deleteReservation " + String.valueOf(id_movie) + "#" + String.valueOf(id_user) + "#" + place);
+        out.flush();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String buffer = in.readLine();
+
+        if(!buffer.equals("Succses"))
+            System.out.println("Error from server");
+
+    }
+
+    private void updateReservation(int id_movie, int id_user, String place) throws IOException {
+
+        Socket s = new Socket("localhost", 9999);
+
+        PrintWriter out = new PrintWriter(s.getOutputStream());
+        out.println("updateReservation " + String.valueOf(id_movie) + "#" + String.valueOf(id_user) + "#" + place);
+        out.flush();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String buffer = in.readLine();
+
+        if(!buffer.equals("Succses"))
+            System.out.println("Error from server");
+
+    }
+
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException, SQLException {
+
+        if(event.getSource() == btn_logout) {
+            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Login.fxml"));
+            Parent root = (Parent) rootLoader.load();
+            Stage window = (Stage) btn_logout.getScene().getWindow();
+            Scene scene = new Scene(root);
+            window.setTitle("Index");
+            window.setScene(scene);
+            window.show();
+        }
+    }
+
 
 }

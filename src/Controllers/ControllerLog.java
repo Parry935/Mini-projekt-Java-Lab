@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import source.Main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,8 +24,6 @@ import java.sql.SQLException;
 
 
 public class ControllerLog {
-
-    public static int idUser;
 
     @FXML
     private Button btn_log;
@@ -50,11 +49,11 @@ public class ControllerLog {
 
             BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
-            String idUserString = in.readLine();
+            String result = in.readLine();
 
-            int idUser = Integer.parseInt(idUserString);
+            String[] dataFromServer = result.split(" ", 2);
 
-            System.out.println(idUser);
+            int idUser = Integer.parseInt(dataFromServer[0]);
 
             if(idUser == 0) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -65,13 +64,27 @@ public class ControllerLog {
             }
 
             else {
-                FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Index.fxml"));
-                Parent root = (Parent) rootLoader.load();
-                Stage window = (Stage) btn_log.getScene().getWindow();
-                Scene scene = new Scene(root);
-                window.setTitle("Index");
-                window.setScene(scene);
-                window.show();
+
+                Main.userID = idUser;
+
+                if(dataFromServer[1].equals("Admin")){
+                    FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/IndexAdmin.fxml"));
+                    Parent root = (Parent) rootLoader.load();
+                    Stage window = (Stage) btn_log.getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    window.setTitle("IndexAdmin");
+                    window.setScene(scene);
+                    window.show();
+                }
+                else{
+                    FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Index.fxml"));
+                    Parent root = (Parent) rootLoader.load();
+                    Stage window = (Stage) btn_log.getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    window.setTitle("Index");
+                    window.setScene(scene);
+                    window.show();
+                }
             }
         }
 

@@ -79,11 +79,15 @@ public class ControllerReg {
         PrintWriter out = new PrintWriter(s.getOutputStream());
 
         out.println("checkUserInDbByEmail " + Reg_emial.getText());
+        out.flush();
 
         BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
+        System.out.println("checkUserInDbByEmail " + Reg_emial.getText());
 
-        if (in.readLine().equals("True")) {
+        String status = in.readLine();
+
+        if (status.equals("True")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
             alert.setHeaderText(null);
@@ -91,7 +95,7 @@ public class ControllerReg {
             alert.showAndWait();
         }
 
-        if (in.readLine().equals("False")) {
+        if (status.equals("False")) {
             insertUser();
         }
     }

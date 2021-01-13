@@ -1,17 +1,29 @@
-package Models;
+package ViewModel;
 
-public class Reservation {
+import Models.Reservation;
 
-    private int id_user;
+public class ReservationVM {
+
+    private int id_reservation;
     private int id_movie;
+    private int id_user;
     private String place;
-    private int confirm;
+    private String confirm;
 
-    public Reservation(int id_user, int id_movie, String place, int confirm) {
+    public ReservationVM(int id_reservation, int id_movie, int id_user,String place, String confirm) {
+        this.id_reservation = id_reservation;
         this.id_user = id_user;
         this.id_movie = id_movie;
         this.place = place;
         this.confirm = confirm;
+    }
+
+    public int getId_reservation() {
+        return id_reservation;
+    }
+
+    public void setId_reservation(int id_reservation) {
+        this.id_reservation = id_reservation;
     }
 
     public int getId_user() {
@@ -38,11 +50,11 @@ public class Reservation {
         this.place = place;
     }
 
-    public int getConfirm() {
+    public String getConfirm() {
         return confirm;
     }
 
-    public void setConfirm(int confirm) {
+    public void setConfirm(String confirm) {
         this.confirm = confirm;
     }
 }

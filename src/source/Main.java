@@ -1,5 +1,8 @@
 package source;
 
+import Controllers.ControllerIndex;
+import Models.Movie;
+import Models.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +18,9 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Main extends Application {
+
+    public static Movie movie;
+    public static int userID;
 
 
     @Override
