@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ControllerIndexAdmin">
+  <tabs>
+    <Tab style="-fx-background-color: #BBCFF4;" styleClass="my-table" text="Filmy">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #47494F;">
+          <children>
+            <TableView fx:id="tableMovie" layoutX="-2.0" layoutY="29.0" prefHeight="341.0" prefWidth="606.0">
+              <columns>
+                <TableColumn fx:id="idMovie" prefWidth="47.20001220703125" text="Id" />
+                <TableColumn fx:id="dateMovie" prefWidth="151.20001220703125" text="Data" />
+                <TableColumn fx:id="titleMovie" minWidth="0.0" prefWidth="174.4000244140625" text="Film" />
+                <TableColumn fx:id="typeMovie" prefWidth="136.800048828125" text="Gatunek" />
+                <TableColumn fx:id="delMovie" prefWidth="92.79998779296875" text="Usuń" />
+              </columns>
+              <effect>
+                <SepiaTone />
+              </effect>
+            </TableView>
+              <Button fx:id="btn_logout" layoutY="1.0" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #FEBD5A;" text="Wyloguj się" textFill="#030303">
+                  <font>
+                      <Font name="System Bold Italic" size="12.0" />
+                  </font>
+              </Button>
+          </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab style="-fx-background-color: #C7F4BB;" text="Dodaj film">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #47494F;">
+               <children>
+                  <DatePicker fx:id="addMovieDate" layoutX="163.0" layoutY="34.0" />
+                  <Label layoutX="25.0" layoutY="34.0" prefHeight="18.0" prefWidth="54.0" text="Data" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addMovieTitle" layoutX="161.0" layoutY="143.0" prefHeight="26.0" prefWidth="177.0" />
+                  <TextField fx:id="addMovieType" layoutX="161.0" layoutY="202.0" prefHeight="26.0" prefWidth="178.0" />
+                  <Label layoutX="26.0" layoutY="141.0" prefHeight="18.0" prefWidth="54.0" text="Tytył" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="26.0" layoutY="200.0" prefHeight="30.0" prefWidth="90.0" text="Gatunek" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btn_addMovie" layoutX="356.0" layoutY="290.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="175.0" style="-fx-background-color: #190D50;" onAction="#addMovieEvent" text="Dodaj film" textFill="#ff8c1a">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font></Button>
+                  <TextField fx:id="addMovieTime" layoutX="163.0" layoutY="83.0" prefHeight="26.0" prefWidth="177.0" />
+                  <Label layoutX="25.0" layoutY="81.0" prefHeight="30.0" prefWidth="81.0" text="Godzina" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab style="-fx-background-color: #AAB54A;" styleClass="my-table" text="Użytkownicy">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #47494F;">
+          <children>
+            <TableView fx:id="tableUsers" layoutX="-2.0" layoutY="29.0" prefHeight="341.0" prefWidth="606.0">
+              <columns>
+                <TableColumn fx:id="idUser" prefWidth="56.800048828125" text="Id" />
+                <TableColumn fx:id="emailUser" prefWidth="127.199951171875" text="Email" />
+                <TableColumn fx:id="firstNameUser" prefWidth="98.4000244140625" text="Imie" />
+                <TableColumn fx:id="lastNameUser" prefWidth="144.800048828125" text="Nazwisko" />
+                <TableColumn fx:id="ageUser" minWidth="0.0" prefWidth="78.39996337890625" text="Wiek" />
+                <TableColumn fx:id="phoneUser" prefWidth="96.79998779296875" text="Telefon" />
+              </columns>
+              <effect>
+                <SepiaTone />
+              </effect>
+            </TableView>
+          </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab style="-fx-background-color: #B54A77;" styleClass="my-table" text="Rezerwacje">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #47494F;">
+          <children>
+            <TableView fx:id="tableReservation" layoutX="-2.0" layoutY="29.0" prefHeight="342.0" prefWidth="600.0">
+              <columns>
+                <TableColumn fx:id="idReservation" prefWidth="87.20001220703125" text="Id rezerwacji" />
+                <TableColumn fx:id="idMovieRes" prefWidth="68.79998779296875" text="Id filmu" />
+                <TableColumn fx:id="idUserRes" minWidth="0.0" prefWidth="115.199951171875" text="Id użytkownika" />
+                <TableColumn fx:id="placeRes" prefWidth="136.79998779296875" text="Miejsca" />
+                <TableColumn fx:id="confirmRes" minWidth="0.0" prefWidth="94.4000244140625" text="Potwierdzone" />
+                <TableColumn fx:id="delRes" maxWidth="190.4000244140625" prefWidth="96.800048828125" text="Usuń" />
+              </columns>
+              <effect>
+                <SepiaTone />
+              </effect>
+            </TableView>
+          </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
