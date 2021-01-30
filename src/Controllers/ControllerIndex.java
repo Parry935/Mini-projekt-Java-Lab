@@ -92,11 +92,24 @@ public class ControllerIndex {
     @FXML
     private TableColumn generateTicets;
 
+    @FXML
+    private TableView<Message> tableMessages;
+
+    @FXML
+    private TableColumn<Message, String> titleMessages;
+
+    @FXML
+    private TableColumn<Message, String> dateMessages;
+
+    @FXML
+    private TableColumn showMessages;
+
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     ObservableList<Movie> movies = FXCollections.observableArrayList();
     ObservableList<ReservationToConfirmVM> reservationsVM = FXCollections.observableArrayList();
     ObservableList<ReservationConfirmVM> reservationsConfirmVM = FXCollections.observableArrayList();
+    ObservableList<Message> messages = FXCollections.observableArrayList();
 
     List<MovieVM> reservedMovies = new ArrayList<MovieVM>();
 
@@ -264,10 +277,7 @@ public class ControllerIndex {
 
         confirmRes.setCellFactory(callFactoryReservationConfirm);
         delRes.setCellFactory(callFactoryReservationDel);
-
-        tableTicets.setItems(reservationsConfirmVM);
-
-
+        tableReservation.setItems(reservationsVM);
 
 
         initViewReservationConfirm();
@@ -283,15 +293,11 @@ public class ControllerIndex {
                         setText(null);
                     }
                     else{
-                        final Button editButton = new Button(("Potwierdz"));
+                        final Button editButton = new Button(("Generuj"));
                         editButton.setOnAction(event -> {
                             ReservationConfirmVM r= getTableView().getItems().get(getIndex());
 
-                            try {
-                                updateReservation(Integer.parseInt(r.getIdMovie()),Main.userID,r.getPlace());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            Main.generateReservationTicket = r;
 
                             FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Ticket.fxml"));
                             Parent root = null;
@@ -300,7 +306,7 @@ public class ControllerIndex {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            Stage window = (Stage) btn_logout.getScene().getWindow();
+                            Stage window = new Stage();
                             Scene scene = new Scene(root);
                             window.setTitle("Index");
                             window.setScene(scene);
@@ -321,9 +327,61 @@ public class ControllerIndex {
         titleTicets.setCellValueFactory(new PropertyValueFactory<ReservationConfirmVM,String>("title"));
         placeTicets.setCellValueFactory(new PropertyValueFactory<ReservationConfirmVM,String>("place"));
 
-        delRes.setCellFactory(callFactoryReservationDel);
+        generateTicets.setCellFactory(callFactoryGenerate);
 
-        tableReservation.setItems(reservationsVM);
+        tableTicets.setItems(reservationsConfirmVM);
+
+        getMessages();
+
+
+        Callback<TableColumn<Message, String>, TableCell<Message, String>> callFactoryMessegeShow = (param) ->{
+            final TableCell<Message,String> cell = new TableCell<Message,String>(){
+                @Override
+                public void updateItem(String item,boolean empty)
+                {
+                    super.updateItem(item,empty);
+                    if(empty){
+                        setGraphic(null);
+                        setText(null);
+                    }
+                    else{
+                        final Button editButton = new Button(("Pokaż wiadomość"));
+                        editButton.setOnAction(event -> {
+                            Message m= getTableView().getItems().get(getIndex());
+
+                            Main.message = m;
+
+                            FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Message.fxml"));
+                            Parent root = null;
+                            try {
+                                root = (Parent) rootLoader.load();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Stage window = new Stage();
+                            Scene scene = new Scene(root);
+                            window.setTitle("Message");
+                            window.setScene(scene);
+                            window.show();
+                        });
+
+                        setGraphic(editButton);
+                        setText(null);
+                    }
+                }
+
+            };
+            return cell;
+
+        };
+
+
+        showMessages.setCellFactory(callFactoryMessegeShow);
+
+        titleMessages.setCellValueFactory(new PropertyValueFactory<Message,String>("title"));
+        dateMessages.setCellValueFactory(new PropertyValueFactory<Message,String>("date"));
+
+        tableMessages.setItems(messages);
 
     }
 
@@ -339,12 +397,14 @@ public class ControllerIndex {
 
         String buffer = in.readLine();
 
+        if(!buffer.equals("")) {
         String[] moviesFromServer = buffer.split("#");
 
-        for(String item: moviesFromServer){
-            String[] movie = item.split("@");
-            Movie movieToList = new Movie(movie[0],movie[1],movie[2]);
-            movies.add(movieToList);
+            for (String item : moviesFromServer) {
+                String[] movie = item.split("@");
+                Movie movieToList = new Movie(movie[0], movie[1], movie[2]);
+                movies.add(movieToList);
+            }
         }
 
     }
@@ -361,17 +421,19 @@ public class ControllerIndex {
 
         String buffer = in.readLine();
 
+        if(!buffer.equals("")) {
 
         String[] reservationFromDb = buffer.split("#");
 
-        for(String item: reservationFromDb){
-            String[] reservation = item.split("@");
-            Reservation reservationToList = new Reservation(
-                    Main.userID,
-                    Integer.parseInt(reservation[0]),
-                    reservation[1],
-                    Integer.parseInt(reservation[2]));
-            reservations.add(reservationToList);
+            for (String item : reservationFromDb) {
+                String[] reservation = item.split("@");
+                Reservation reservationToList = new Reservation(
+                        Main.userID,
+                        Integer.parseInt(reservation[0]),
+                        reservation[1],
+                        Integer.parseInt(reservation[2]));
+                reservations.add(reservationToList);
+            }
         }
 
     }
@@ -388,13 +450,14 @@ public class ControllerIndex {
 
         String buffer = in.readLine();
 
-
+        if(!buffer.equals("")) {
         String[] moviesFromServer = buffer.split("#");
 
-        for (String item : moviesFromServer) {
-            String[] movie = item.split("@");
-            MovieVM movieToList = new MovieVM(movie[0], movie[1], movie[2], movie[3]);
-            reservedMovies.add(movieToList);
+            for (String item : moviesFromServer) {
+                String[] movie = item.split("@");
+                MovieVM movieToList = new MovieVM(movie[0], movie[1], movie[2], movie[3]);
+                reservedMovies.add(movieToList);
+            }
         }
     }
 
@@ -469,6 +532,14 @@ public class ControllerIndex {
 
         if(!buffer.equals("Succses"))
             System.out.println("Error from server");
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Anulowano rezerwację");
+            alert.showAndWait();
+        }
 
     }
 
@@ -487,6 +558,14 @@ public class ControllerIndex {
         if(!buffer.equals("Succses"))
             System.out.println("Error from server");
 
+        else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Poprawnie potwierdzono rezerwacje");
+            alert.showAndWait();
+        }
+
     }
 
 
@@ -501,6 +580,31 @@ public class ControllerIndex {
             window.setTitle("Index");
             window.setScene(scene);
             window.show();
+        }
+    }
+
+    private void getMessages() throws IOException {
+
+        Socket s = new Socket("localhost", 9999);
+
+        PrintWriter out = new PrintWriter(s.getOutputStream());
+        out.println("getMessages");
+        out.flush();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String buffer = in.readLine();
+
+        if(!buffer.equals("")) {
+
+            String[] messagesFromServer = buffer.split("#");
+
+            for (String item : messagesFromServer) {
+                String[] mes = item.split("@");
+                mes[2] = mes[2].replaceAll("~","\n");
+                Message messageToList = new Message(mes[0], mes[1], mes[2], mes[3]);
+                messages.add(messageToList);
+            }
         }
     }
 

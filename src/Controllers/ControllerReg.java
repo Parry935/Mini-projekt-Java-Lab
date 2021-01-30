@@ -37,7 +37,7 @@ public class ControllerReg {
     private Button btn_reg;
 
     @FXML
-    void handleButtonAction(ActionEvent event) throws SQLException, IOException {
+    private void handleButtonAction(ActionEvent event) throws SQLException, IOException {
         if (event.getSource() == btn_reg) {
             if (!Reg_emial.getText().equals("") &&
                     !Reg_first_name.getText().equals("") &&
@@ -73,7 +73,7 @@ public class ControllerReg {
         }
     }
 
-    public void addUserToDB() throws IOException {
+    private void addUserToDB() throws IOException {
         Socket s = new Socket("localhost", 9999);
 
         PrintWriter out = new PrintWriter(s.getOutputStream());
@@ -82,8 +82,6 @@ public class ControllerReg {
         out.flush();
 
         BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
-
-        System.out.println("checkUserInDbByEmail " + Reg_emial.getText());
 
         String status = in.readLine();
 
@@ -100,7 +98,7 @@ public class ControllerReg {
         }
     }
 
-        public void insertUser() throws IOException {
+    private void insertUser() throws IOException {
 
             Socket s = new Socket("localhost", 9999);
             PrintWriter out = new PrintWriter(s.getOutputStream());

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="534.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to top left, #00a14b 0%, #0c1254 100%);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ControllerMessage">
+    <children>
+        <Pane layoutX="23.0" layoutY="16.0" prefHeight="501.0" prefWidth="553.0" style="-fx-background-color: linear-gradient(to bottom left, #ffffff 0%, #aad8f1 100%);">
+            <children>
+                <Label fx:id="titleMes" alignment="CENTER" layoutX="36.0" layoutY="14.0" prefHeight="45.0" prefWidth="461.0" text="Title" textFill="#0c1254">
+                    <font>
+                        <Font name="System Bold" size="27.0" />
+                    </font>
+                </Label>
+                <Label fx:id="dateMes" layoutX="59.0" layoutY="75.0" prefHeight="17.0" prefWidth="119.0" text="date" textFill="#0c1254">
+                    <font>
+                        <Font name="System Italic" size="18.0" />
+                    </font>
+                </Label>
+            <Label fx:id="textMes" alignment="TOP_LEFT" layoutX="43.0" layoutY="110.0" prefHeight="354.0" prefWidth="461.0" style="-fx-border-color: linear-gradient(to top left, #00a14b 0%, #0c1254 100%); -fx-border-radius: 20px;" text="text">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

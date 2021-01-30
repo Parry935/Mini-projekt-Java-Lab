@@ -311,6 +311,7 @@ public class ControllerChoosePlace {
         }
     }
 
+    @FXML
     public void orderEvent(ActionEvent event) throws IOException {
 
         if (event.getSource() == btn_order) {
@@ -319,47 +320,53 @@ public class ControllerChoosePlace {
 
             CheckPlaces(seatTakenByUser);
 
-            boolean correctChecked = true;
-
-            for(String seat: seatTaken)
-            {
-                for(String seatUser : seatTakenByUser) {
-                    if(seatUser.equals(seat))
-                    {
-                        correctChecked = false;
-                        break;
-                    }
-                }
-
-                if(correctChecked == false)
-                    break;
-            }
-
-            if(correctChecked == false)
+            if(seatTakenByUser.isEmpty())
             {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Dialog");
                 alert.setHeaderText(null);
-                alert.setContentText("Wybrałeś już zajete miejsca");
+                alert.setContentText("Nie wybrałeś żadnego miejsca!");
                 alert.showAndWait();
+
             }
 
-            else
-            {
-                addReservationToDb(seatTakenByUser);
+            else {
+                boolean correctChecked = true;
 
-                FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Index.fxml"));
-                Parent root = null;
-                try {
-                    root = (Parent) rootLoader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                for (String seat : seatTaken) {
+                    for (String seatUser : seatTakenByUser) {
+                        if (seatUser.equals(seat)) {
+                            correctChecked = false;
+                            break;
+                        }
+                    }
+
+                    if (correctChecked == false)
+                        break;
                 }
-                Stage window = (Stage) btn_order.getScene().getWindow();
-                Scene scene = new Scene(root);
-                window.setTitle("Index");
-                window.setScene(scene);
-                window.show();
+
+                if (correctChecked == false) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error Dialog");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Wybrałeś już zajete miejsca");
+                    alert.showAndWait();
+                } else {
+                    addReservationToDb(seatTakenByUser);
+
+                    FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("../FXML/Index.fxml"));
+                    Parent root = null;
+                    try {
+                        root = (Parent) rootLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Stage window = (Stage) btn_order.getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    window.setTitle("Index");
+                    window.setScene(scene);
+                    window.show();
+                }
             }
 
         }

@@ -10,6 +10,9 @@ public class User {
     private String role;
 
 
+    public User() {
+    }
+
     public User(String emial, String first_name, String last_name, String age, String number, String password,String role) {
         this.emial = emial;
         this.first_name = first_name;

@@ -7,6 +7,9 @@ public class Movie {
     private String type;
 
 
+    public Movie() {
+    }
+
     public Movie(String date, String title, String type) {
         this.date = date;
         this.title = title;

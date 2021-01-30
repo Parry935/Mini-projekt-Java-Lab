@@ -6,43 +6,43 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #364084;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ControllerReg">
+<AnchorPane prefHeight="433.0" prefWidth="440.0" style="-fx-background-color: linear-gradient(to top left, #00a14b 0%, #0c1254 100%);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ControllerReg">
    <children>
-      <Label layoutX="71.0" layoutY="61.0" text="Email" textFill="WHITE">
+      <Label layoutX="94.0" layoutY="86.0" text="Email" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <Label layoutX="75.0" layoutY="107.0" text="Imię" textFill="WHITE">
+      <Label layoutX="98.0" layoutY="132.0" text="Imię" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <Label layoutX="55.0" layoutY="149.0" text="Nazwisko" textFill="WHITE">
+      <Label layoutX="78.0" layoutY="174.0" text="Nazwisko" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <Label layoutX="71.0" layoutY="192.0" text="Wiek" textFill="WHITE">
+      <Label layoutX="94.0" layoutY="217.0" text="Wiek" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <Label layoutX="61.0" layoutY="236.0" text="Telefon" textFill="WHITE">
+      <Label layoutX="84.0" layoutY="261.0" text="Telefon" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <TextField fx:id="Reg_emial" layoutX="142.0" layoutY="62.0" prefHeight="26.0" prefWidth="150.0" />
-      <TextField fx:id="Reg_first_name" layoutX="142.0" layoutY="108.0" prefHeight="26.0" prefWidth="150.0" />
-      <TextField fx:id="Reg_last_name" layoutX="142.0" layoutY="150.0" prefHeight="26.0" prefWidth="150.0" />
-      <TextField fx:id="Reg_age" layoutX="142.0" layoutY="192.0" prefHeight="26.0" prefWidth="150.0" />
-      <TextField fx:id="Reg_number" layoutX="142.0" layoutY="236.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label layoutX="157.0" layoutY="14.0" text="Rejestracja" textFill="#d5ef0b">
+      <TextField fx:id="Reg_emial" layoutX="165.0" layoutY="87.0" prefHeight="26.0" prefWidth="150.0" />
+      <TextField fx:id="Reg_first_name" layoutX="165.0" layoutY="133.0" prefHeight="26.0" prefWidth="150.0" />
+      <TextField fx:id="Reg_last_name" layoutX="165.0" layoutY="175.0" prefHeight="26.0" prefWidth="150.0" />
+      <TextField fx:id="Reg_age" layoutX="165.0" layoutY="217.0" prefHeight="26.0" prefWidth="150.0" />
+      <TextField fx:id="Reg_number" layoutX="165.0" layoutY="261.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label layoutX="180.0" layoutY="39.0" text="Rejestracja" textFill="#d5ef0b">
          <font>
             <Font name="System Bold" size="23.0" />
          </font></Label>
-      <Button fx:id="btn_reg" layoutX="147.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #d5ef0b;" text="Zarejestruj się">
+      <Button fx:id="btn_reg" layoutX="170.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #d5ef0b;" text="Zarejestruj się">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font></Button>
-      <TextField fx:id="Reg_pass" layoutX="142.0" layoutY="279.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label layoutX="69.0" layoutY="279.0" text="Hasło" textFill="WHITE">
+      <TextField fx:id="Reg_pass" layoutX="165.0" layoutY="304.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label layoutX="92.0" layoutY="304.0" text="Hasło" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

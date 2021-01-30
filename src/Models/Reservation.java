@@ -7,6 +7,9 @@ public class Reservation {
     private String place;
     private int confirm;
 
+    public Reservation() {
+    }
+
     public Reservation(int id_user, int id_movie, String place, int confirm) {
         this.id_user = id_user;
         this.id_movie = id_movie;

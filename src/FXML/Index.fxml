@@ -6,53 +6,46 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ControllerIndex">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ControllerIndex">
   <tabs>
     <Tab style="-fx-background-color: #BBCFF4;" styleClass="my-table" text="Repertuar">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #47494F;">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top left, #00a14b 0%, #0c1254 100%);">
                <children>
-                  <TableView fx:id="tableMovies" layoutX="-2.0" layoutY="29.0" prefHeight="341.0" prefWidth="606.0">
+                  <TableView fx:id="tableMovies" layoutX="-2.0" layoutY="29.0" prefHeight="442.0" prefWidth="806.0" style="-fx-background-color: linear-gradient(to bottom left, #ccffcc 0%, #aad8f1 100%);">
                     <columns>
-                      <TableColumn fx:id="dateMovies" prefWidth="147.20001220703125" text="Data" />
-                      <TableColumn fx:id="titleMovies" prefWidth="254.4000244140625" text="Film" />
-                        <TableColumn fx:id="typeMovies" prefWidth="116.800048828125" text="Gatunek" />
-                        <TableColumn fx:id="reservMovies" prefWidth="83.99993896484375" text="Rezerwuj" />
+                      <TableColumn fx:id="dateMovies" prefWidth="192.0" style="-fx-alignment: CENTER;" text="Data" />
+                      <TableColumn fx:id="titleMovies" prefWidth="276.0" style="-fx-alignment: CENTER;" text="Film" />
+                        <TableColumn fx:id="typeMovies" prefWidth="176.79998779296875" style="-fx-alignment: CENTER;" text="Gatunek" />
+                        <TableColumn fx:id="reservMovies" prefWidth="156.79998779296875" style="-fx-alignment: CENTER;" text="Rezerwuj" />
                     </columns>
-                     <effect>
-                        <SepiaTone />
-                     </effect>
                   </TableView>
-                  <Button fx:id="btn_logout" layoutY="1.0" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #FEBD5A;" text="Wyloguj się" textFill="#030303">
-                     <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                     </font>
-                  </Button>
+                   <Button fx:id="btn_logout" layoutY="1.0" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="147.0" style="-fx-background-color: #BBE381;" text="Wyloguj się" textFill="#393939">
+                       <font>
+                           <Font name="System Bold" size="12.0" />
+                       </font>
+                   </Button>
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab style="-fx-background-color: #C7F4BB;" text="Moje rezerwacje">
+    <Tab style="-fx-background-color: #F0E093;" text="Moje rezerwacje">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #47494F;">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top left, #00a14b 0%, #0c1254 100%);">
                <children>
-                  <TableView fx:id="tableReservation" layoutY="30.0" prefHeight="340.0" prefWidth="600.0">
+                  <TableView fx:id="tableReservation" layoutY="30.0" prefHeight="440.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom left, #ccffcc 0%, #aad8f1 100%);">
                     <columns>
-                      <TableColumn fx:id="dateRes" prefWidth="102.4000244140625" text="Data" />
-                      <TableColumn fx:id="titleRes" prefWidth="124.0" text="Film" />
-                        <TableColumn fx:id="placeRes" prefWidth="92.79998779296875" text="Miejsce" />
-                        <TableColumn fx:id="timeRes" prefWidth="139.2000732421875" text="Czas na potwierdzenie" />
-                        <TableColumn fx:id="confirmRes" prefWidth="68.00006103515625" text="Potwierdź" />
-                        <TableColumn fx:id="delRes" prefWidth="83.20001220703125" text="Anuluj" />
+                      <TableColumn fx:id="dateRes" prefWidth="102.4000244140625" style="-fx-alignment: CENTER;" text="Data" />
+                      <TableColumn fx:id="titleRes" prefWidth="150.4000244140625" style="-fx-alignment: CENTER;" text="Film" />
+                        <TableColumn fx:id="placeRes" prefWidth="196.0" style="-fx-alignment: CENTER;" text="Miejsce" />
+                        <TableColumn fx:id="timeRes" prefWidth="161.5999755859375" style="-fx-alignment: CENTER;" text="Czas na potwierdzenie" />
+                        <TableColumn fx:id="confirmRes" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Potwierdź" />
+                        <TableColumn fx:id="delRes" prefWidth="94.4000244140625" style="-fx-alignment: CENTER;" text="Anuluj" />
                     </columns>
-                     <effect>
-                        <SepiaTone />
-                     </effect>
                   </TableView>
-                  <Label fx:id="timeLabel" layoutX="375.0" prefHeight="29.0" prefWidth="214.0" text="Time" textFill="WHITE">
+                  <Label fx:id="timeLabel" layoutX="488.0" layoutY="-1.0" prefHeight="29.0" prefWidth="214.0" text="Time" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -61,20 +54,31 @@
       </content>
     </Tab>
 
-      <Tab style="-fx-background-color: #39BDB0;" text="Moje bilety">
+      <Tab style="-fx-background-color: #8ACFF5;" text="Moje bilety">
           <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #47494F;">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top left, #00a14b 0%, #0c1254 100%);">
                   <children>
-                      <TableView fx:id="tableTicets" layoutY="30.0" prefHeight="340.0" prefWidth="600.0">
+                      <TableView fx:id="tableTicets" layoutY="30.0" prefHeight="438.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom left, #ccffcc 0%, #aad8f1 100%);">
                           <columns>
-                              <TableColumn fx:id="dateTicets" prefWidth="100.79998779296875" text="Data" />
-                              <TableColumn fx:id="titleTicets" prefWidth="197.5999755859375" text="Film" />
-                              <TableColumn fx:id="placeTicets" prefWidth="195.199951171875" text="Miejsce" />
-                              <TableColumn fx:id="generateTicets" prefWidth="105.60000610351562" text="Generuj bilet" />
+                              <TableColumn fx:id="dateTicets" prefWidth="163.20001220703125" style="-fx-alignment: CENTER;" text="Data" />
+                              <TableColumn fx:id="titleTicets" prefWidth="247.20001220703125" style="-fx-alignment: CENTER;" text="Film" />
+                              <TableColumn fx:id="placeTicets" prefWidth="228.79998779296875" style="-fx-alignment: CENTER;" text="Miejsce" />
+                              <TableColumn fx:id="generateTicets" prefWidth="160.79998779296875" style="-fx-alignment: CENTER;" text="Generuj bilet" />
                           </columns>
-                          <effect>
-                              <SepiaTone />
-                          </effect>
+                      </TableView>
+                  </children></AnchorPane>
+          </content>
+      </Tab>
+      <Tab style="-fx-background-color: #BFA7F5;" styleClass="my-table" text="Wiadomości">
+          <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top left, #00a14b 0%, #0c1254 100%);">
+                  <children>
+                      <TableView fx:id="tableMessages" layoutX="-2.0" layoutY="29.0" prefHeight="441.0" prefWidth="807.0" style="-fx-background-color: linear-gradient(to bottom left, #ccffcc 0%, #aad8f1 100%);">
+                          <columns>
+                              <TableColumn fx:id="titleMessages" prefWidth="268.0" style="-fx-alignment: CENTER;" text="Tytuł" />
+                              <TableColumn fx:id="dateMessages" prefWidth="352.79998779296875" style="-fx-alignment: CENTER;" text="Data" />
+                              <TableColumn fx:id="showMessages" minWidth="0.0" prefWidth="180.800048828125" style="-fx-alignment: CENTER;" text="Pokaż wiadomość" />
+                          </columns>
                       </TableView>
                   </children></AnchorPane>
           </content>

@@ -8,124 +8,124 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #6F7788;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ControllerChoosePlace">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to top left, #00a14b 0%, #0c1254 100%);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ControllerChoosePlace">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="50.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
-      <Text layoutX="226.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EKRAN" textAlignment="CENTER" wrappingWidth="148.12579345703125">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#80b8ed" height="50.0" layoutX="137.0" layoutY="29.0" stroke="BLACK" strokeType="INSIDE" width="532.0" />
+      <Text layoutX="326.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EKRAN" textAlignment="CENTER" wrappingWidth="148.12579345703125">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <Rectangle fx:id="p1_1" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="73.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p1_2" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="129.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p1_3" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="187.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p1_4" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="243.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p1_5" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="300.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p1_6" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="355.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p1_7" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="412.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p1_8" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="464.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p1_9" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="520.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <RadioButton fx:id="r1_1" layoutX="78.0" layoutY="145.0" mnemonicParsing="false" text="1" />
-      <RadioButton fx:id="r1_2" layoutX="134.0" layoutY="145.0" mnemonicParsing="false" text="2" />
-      <RadioButton fx:id="r1_3" layoutX="192.0" layoutY="145.0" mnemonicParsing="false" text="3" />
-      <RadioButton fx:id="r1_4" layoutX="248.0" layoutY="145.0" mnemonicParsing="false" text="4" />
-      <RadioButton fx:id="r1_5" layoutX="305.0" layoutY="145.0" mnemonicParsing="false" text="5" />
-      <RadioButton fx:id="r1_6" layoutX="360.0" layoutY="145.0" mnemonicParsing="false" text="6" />
-      <RadioButton fx:id="r1_7" layoutX="417.0" layoutY="145.0" mnemonicParsing="false" text="7" />
-      <RadioButton fx:id="r1_8" layoutX="469.0" layoutY="145.0" mnemonicParsing="false" text="8" />
-      <RadioButton fx:id="r1_9" layoutX="525.0" layoutY="145.0" mnemonicParsing="false" text="9" />
-      <Rectangle fx:id="p2_1" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="73.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p2_2" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="129.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p2_3" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="187.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p2_4" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="243.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p2_5" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="300.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p2_6" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="355.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p2_7" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="412.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p2_8" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="464.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p2_9" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="520.0" layoutY="185.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <RadioButton fx:id="r2_1" layoutX="78.0" layoutY="192.0" mnemonicParsing="false" text="1" />
-      <RadioButton fx:id="r2_2" layoutX="134.0" layoutY="192.0" mnemonicParsing="false" text="2" />
-      <RadioButton fx:id="r2_3" layoutX="192.0" layoutY="192.0" mnemonicParsing="false" text="3" />
-      <RadioButton fx:id="r2_4" layoutX="248.0" layoutY="192.0" mnemonicParsing="false" text="4" />
-      <RadioButton fx:id="r2_5" layoutX="305.0" layoutY="192.0" mnemonicParsing="false" text="5" />
-      <RadioButton fx:id="r2_6" layoutX="360.0" layoutY="192.0" mnemonicParsing="false" text="6" />
-      <RadioButton fx:id="r2_7" layoutX="417.0" layoutY="192.0" mnemonicParsing="false" text="7" />
-      <RadioButton fx:id="r2_8" layoutX="469.0" layoutY="192.0" mnemonicParsing="false" text="8" />
-      <RadioButton fx:id="r2_9" layoutX="525.0" layoutY="192.0" mnemonicParsing="false" text="9" />
-      <Rectangle fx:id="p3_1" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="73.0" layoutY="242.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p3_2" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="129.0" layoutY="242.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p3_3" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="187.0" layoutY="242.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p3_4" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="243.0" layoutY="242.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p3_5" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="300.0" layoutY="242.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p3_6" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="355.0" layoutY="242.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p3_7" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="412.0" layoutY="242.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p3_8" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="464.0" layoutY="242.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p3_9" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="520.0" layoutY="242.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <RadioButton fx:id="r3_1" layoutX="78.0" layoutY="249.0" mnemonicParsing="false" text="1" />
-      <RadioButton fx:id="r3_2" layoutX="134.0" layoutY="249.0" mnemonicParsing="false" text="2" />
-      <RadioButton fx:id="r3_3" layoutX="192.0" layoutY="249.0" mnemonicParsing="false" text="3" />
-      <RadioButton fx:id="r3_4" layoutX="248.0" layoutY="249.0" mnemonicParsing="false" text="4" />
-      <RadioButton fx:id="r3_5" layoutX="305.0" layoutY="249.0" mnemonicParsing="false" text="5" />
-      <RadioButton fx:id="r3_6" layoutX="360.0" layoutY="249.0" mnemonicParsing="false" text="6" />
-      <RadioButton fx:id="r3_7" layoutX="417.0" layoutY="249.0" mnemonicParsing="false" text="7" />
-      <RadioButton fx:id="r3_8" layoutX="469.0" layoutY="249.0" mnemonicParsing="false" text="8" />
-      <RadioButton fx:id="r3_9" layoutX="525.0" layoutY="249.0" mnemonicParsing="false" text="9" />
-      <Rectangle fx:id="p4_1" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="73.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p4_2" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="129.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p4_3" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="187.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p4_4" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="243.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p4_5" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="300.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p4_6" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="355.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p4_7" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="412.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p4_8" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="464.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle fx:id="p4_9" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="520.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <RadioButton fx:id="r4_1" layoutX="78.0" layoutY="300.0" mnemonicParsing="false" text="1" />
-      <RadioButton fx:id="r4_2" layoutX="134.0" layoutY="300.0" mnemonicParsing="false" text="2" />
-      <RadioButton fx:id="r4_3" layoutX="192.0" layoutY="300.0" mnemonicParsing="false" text="3" />
-      <RadioButton fx:id="r4_4" layoutX="248.0" layoutY="300.0" mnemonicParsing="false" text="4" />
-      <RadioButton fx:id="r4_5" layoutX="305.0" layoutY="300.0" mnemonicParsing="false" text="5" />
-      <RadioButton fx:id="r4_6" layoutX="360.0" layoutY="300.0" mnemonicParsing="false" text="6" />
-      <RadioButton fx:id="r4_7" layoutX="417.0" layoutY="300.0" mnemonicParsing="false" text="7" />
-      <RadioButton fx:id="r4_8" layoutX="469.0" layoutY="300.0" mnemonicParsing="false" text="8" />
-      <RadioButton fx:id="r4_9" layoutX="525.0" layoutY="300.0" mnemonicParsing="false" text="9" />
-      <Label layoutX="14.0" layoutY="145.0" text="Rząd 1" textFill="WHITE">
+      <Rectangle fx:id="p1_1" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="164.0" layoutY="133.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p1_2" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="220.0" layoutY="133.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p1_3" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="278.0" layoutY="133.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p1_4" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="334.0" layoutY="133.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p1_5" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="391.0" layoutY="133.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p1_6" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="446.0" layoutY="133.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p1_7" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="503.0" layoutY="133.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p1_8" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="555.0" layoutY="133.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p1_9" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="611.0" layoutY="133.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <RadioButton fx:id="r1_1" layoutX="169.0" layoutY="140.0" mnemonicParsing="false" text="1" />
+      <RadioButton fx:id="r1_2" layoutX="225.0" layoutY="140.0" mnemonicParsing="false" text="2" />
+      <RadioButton fx:id="r1_3" layoutX="283.0" layoutY="140.0" mnemonicParsing="false" text="3" />
+      <RadioButton fx:id="r1_4" layoutX="339.0" layoutY="140.0" mnemonicParsing="false" text="4" />
+      <RadioButton fx:id="r1_5" layoutX="396.0" layoutY="140.0" mnemonicParsing="false" text="5" />
+      <RadioButton fx:id="r1_6" layoutX="451.0" layoutY="140.0" mnemonicParsing="false" text="6" />
+      <RadioButton fx:id="r1_7" layoutX="508.0" layoutY="140.0" mnemonicParsing="false" text="7" />
+      <RadioButton fx:id="r1_8" layoutX="560.0" layoutY="140.0" mnemonicParsing="false" text="8" />
+      <RadioButton fx:id="r1_9" layoutX="616.0" layoutY="140.0" mnemonicParsing="false" text="9" />
+      <Rectangle fx:id="p2_1" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="164.0" layoutY="180.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p2_2" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="220.0" layoutY="180.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p2_3" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="278.0" layoutY="180.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p2_4" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="334.0" layoutY="180.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p2_5" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="391.0" layoutY="180.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p2_6" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="446.0" layoutY="180.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p2_7" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="503.0" layoutY="180.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p2_8" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="555.0" layoutY="180.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p2_9" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="611.0" layoutY="180.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <RadioButton fx:id="r2_1" layoutX="169.0" layoutY="187.0" mnemonicParsing="false" text="1" />
+      <RadioButton fx:id="r2_2" layoutX="225.0" layoutY="187.0" mnemonicParsing="false" text="2" />
+      <RadioButton fx:id="r2_3" layoutX="283.0" layoutY="187.0" mnemonicParsing="false" text="3" />
+      <RadioButton fx:id="r2_4" layoutX="339.0" layoutY="187.0" mnemonicParsing="false" text="4" />
+      <RadioButton fx:id="r2_5" layoutX="396.0" layoutY="187.0" mnemonicParsing="false" text="5" />
+      <RadioButton fx:id="r2_6" layoutX="451.0" layoutY="187.0" mnemonicParsing="false" text="6" />
+      <RadioButton fx:id="r2_7" layoutX="508.0" layoutY="187.0" mnemonicParsing="false" text="7" />
+      <RadioButton fx:id="r2_8" layoutX="560.0" layoutY="187.0" mnemonicParsing="false" text="8" />
+      <RadioButton fx:id="r2_9" layoutX="616.0" layoutY="187.0" mnemonicParsing="false" text="9" />
+      <Rectangle fx:id="p3_1" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="164.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p3_2" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="220.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p3_3" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="278.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p3_4" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="334.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p3_5" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="391.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p3_6" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="446.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p3_7" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="503.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p3_8" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="555.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p3_9" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="611.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <RadioButton fx:id="r3_1" layoutX="169.0" layoutY="244.0" mnemonicParsing="false" text="1" />
+      <RadioButton fx:id="r3_2" layoutX="225.0" layoutY="244.0" mnemonicParsing="false" text="2" />
+      <RadioButton fx:id="r3_3" layoutX="283.0" layoutY="244.0" mnemonicParsing="false" text="3" />
+      <RadioButton fx:id="r3_4" layoutX="339.0" layoutY="244.0" mnemonicParsing="false" text="4" />
+      <RadioButton fx:id="r3_5" layoutX="396.0" layoutY="244.0" mnemonicParsing="false" text="5" />
+      <RadioButton fx:id="r3_6" layoutX="451.0" layoutY="244.0" mnemonicParsing="false" text="6" />
+      <RadioButton fx:id="r3_7" layoutX="508.0" layoutY="244.0" mnemonicParsing="false" text="7" />
+      <RadioButton fx:id="r3_8" layoutX="560.0" layoutY="244.0" mnemonicParsing="false" text="8" />
+      <RadioButton fx:id="r3_9" layoutX="616.0" layoutY="244.0" mnemonicParsing="false" text="9" />
+      <Rectangle fx:id="p4_1" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="164.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p4_2" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="220.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p4_3" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="278.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p4_4" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="334.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p4_5" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="391.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p4_6" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="446.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p4_7" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="503.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p4_8" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="555.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle fx:id="p4_9" arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="611.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <RadioButton fx:id="r4_1" layoutX="169.0" layoutY="295.0" mnemonicParsing="false" text="1" />
+      <RadioButton fx:id="r4_2" layoutX="225.0" layoutY="295.0" mnemonicParsing="false" text="2" />
+      <RadioButton fx:id="r4_3" layoutX="283.0" layoutY="295.0" mnemonicParsing="false" text="3" />
+      <RadioButton fx:id="r4_4" layoutX="339.0" layoutY="295.0" mnemonicParsing="false" text="4" />
+      <RadioButton fx:id="r4_5" layoutX="396.0" layoutY="295.0" mnemonicParsing="false" text="5" />
+      <RadioButton fx:id="r4_6" layoutX="451.0" layoutY="295.0" mnemonicParsing="false" text="6" />
+      <RadioButton fx:id="r4_7" layoutX="508.0" layoutY="295.0" mnemonicParsing="false" text="7" />
+      <RadioButton fx:id="r4_8" layoutX="560.0" layoutY="295.0" mnemonicParsing="false" text="8" />
+      <RadioButton fx:id="r4_9" layoutX="616.0" layoutY="295.0" mnemonicParsing="false" text="9" />
+      <Label layoutX="91.0" layoutY="140.0" text="Rząd 1" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="187.0" text="Rząd 2" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="244.0" text="Rząd 3" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="295.0" text="Rząd 4" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="69.0" layoutY="421.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d93611" height="31.0" layoutX="166.0" layoutY="421.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
+      <Label layoutX="112.0" layoutY="427.0" text="- wolne" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="192.0" text="Rząd 2" textFill="WHITE">
+      <Label layoutX="210.0" layoutY="427.0" text="- zajęte" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="249.0" text="Rząd 3" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="14.0" layoutY="300.0" text="Rząd 4" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#65da11" height="31.0" layoutX="50.0" layoutY="347.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d93611" height="31.0" layoutX="147.0" layoutY="347.0" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-      <Label layoutX="93.0" layoutY="353.0" text="- wolne" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="191.0" layoutY="353.0" text="- zajęte" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Button fx:id="btn_order" layoutX="256.0" layoutY="342.0" mnemonicParsing="false" onAction="#orderEvent" prefHeight="42.0" prefWidth="180.0" style="-fx-background-color: #1F547E;" text="Zamów" textFill="WHITE">
+      <Button fx:id="btn_order" layoutX="342.0" layoutY="415.0" mnemonicParsing="false" onAction="#orderEvent" prefHeight="42.0" prefWidth="180.0" style="-fx-background-color: #1F547E;" text="Zamów" textFill="#fff78c">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="btn_returnToIndex" layoutX="451.0" layoutY="342.0" mnemonicParsing="false" onAction="#returnToIndex" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: #1F547E;" text="Powrót" textFill="WHITE">
+      <Button fx:id="btn_returnToIndex" layoutX="585.0" layoutY="415.0" mnemonicParsing="false" onAction="#returnToIndex" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: #1F547E;" text="Powrót" textFill="#fff78c">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
